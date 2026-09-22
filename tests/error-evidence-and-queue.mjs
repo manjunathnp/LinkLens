@@ -1,0 +1,19 @@
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import {chromium} from 'playwright';
+import {readFile} from 'node:fs/promises';
+import {scan} from '../src/scanner.js';
+process.env.PORT='4407';const {server}=await import('../server.js');let origin,external,slowFinished=false,nextStartedBeforeSlow=false;const site=http.createServer((req,res)=>{res.setHeader('Content-Type','text/html');
+ if(req.url==='/broken')return res.end(`<h1>Link audit fixture</h1>${['explicit','restricted','login','application','article'].map(x=>`<a href="${external+'/'+x}">${x}</a>`).join('')}`);
+ if(req.url==='/queue')return res.end('<h1>Queue fixture</h1>'+['slow',...Array.from({length:11},(_,i)=>'fast-'+i)].map(x=>`<a href="/${x}">${x}</a>`).join(''));
+ if(req.url==='/slow')return setTimeout(()=>{slowFinished=true;res.end('<h1>Slow destination</h1>')},4000);
+ if(req.url==='/fast-5')nextStartedBeforeSlow=!slowFinished;
+ if(req.url.startsWith('/fast-'))return res.end('<h1>Fast destination</h1>');
+ res.statusCode=500;res.end({'/explicit':'<h1>Status Codes</h1><p>This page returned a 500 status code.</p>','/restricted':'<h1>Internal Server Error</h1><p>Request blocked. Verify you are human.</p>','/login':'<h1>Internal Server Error</h1><input type="password"><button>Sign in</button>','/application':'<h1>Application dashboard</h1><a href="/queue">Explore</a>','/article':'<h1>Explaining internal server error</h1><p>A technical article.</p>'}[req.url]||'<h1>Internal Server Error</h1>');
+});await new Promise(r=>site.listen(0,'127.0.0.1',r));origin='http://127.0.0.1:'+site.address().port;external='http://localhost:'+site.address().port;let browser;
+try{
+ const result=await scan({url:origin+'/broken',pages:[origin+'/broken'],viewports:['Desktop']},{signal:new AbortController().signal,gaps:[]});const byName=n=>result.assets.find(a=>a.accessibleName===n);assert.equal(byName('explicit').status,'broken');assert.match(byName('explicit').issues[0].message,/server-error page/);for(const name of ['restricted','login','application','article'])assert.equal(byName(name).status,'unverified',name);
+ const queued=await scan({url:origin+'/queue',pages:[origin+'/queue'],viewports:['Desktop']},{signal:new AbortController().signal,gaps:[]});assert.ok(nextStartedBeforeSlow,'New destinations must start while the first slow request is still pending');assert.equal(queued.assets.length,12);assert.ok(queued.assets.every(a=>a.loaded&&a.status==='pass'));
+ browser=await chromium.launch({headless:true});const page=await browser.newPage();await page.goto('http://127.0.0.1:4407');const sample=JSON.parse(await readFile(new URL('../test-output/report.json',import.meta.url),'utf8'));const assets=[{...sample.assets[0],page:origin+'/broken',loaded:true,status:'alt',issues:[{severity:'alt',code:'missing-link-name',message:'Link has no accessible name',fix:'Name the link'}]}];await page.evaluate(report=>localStorage.setItem('linklense-audits-v1',JSON.stringify([report])),{...sample,url:origin+'/broken',pages:[origin+'/broken'],assets});await page.reload();await page.getByRole('button',{name:'Page: /broken',exact:true}).waitFor();assert.equal(await page.locator('.metric strong').nth(1).innerText(),'0');assert.match(await page.locator('.focus-breakdown').innerText(),/Broken destinations: 0 · Link-name issues: 1/);await page.getByRole('button',{name:'Page: /broken',exact:true}).click();assert.equal(await page.locator('#status-filter').inputValue(),'confirmed');assert.equal(await page.locator('tbody tr').count(),1);
+ console.log('RESULT-03/LINK-10/PERF-01 passed: URL labels vs categories, confirmed-only drilldown, explicit HTTP 500 evidence, protected/restricted/rendered-application exceptions, and overlapping bounded destination checks.');
+}finally{await browser?.close();site.closeAllConnections();await new Promise(r=>site.close(r));await new Promise(r=>server.close(r));}

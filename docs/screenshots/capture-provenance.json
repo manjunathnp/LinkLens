@@ -1,0 +1,102 @@
+{
+  "capturedAt": "2026-09-22T03:18:45.391Z",
+  "sourceURL": "http://127.0.0.1:3000/techbookstore-shop.html",
+  "linkLens": {
+    "version": "1.3.1",
+    "buildId": "cf9d646c1c50"
+  },
+  "scope": "Current page",
+  "access": "public",
+  "viewports": [
+    "Desktop",
+    "Mobile"
+  ],
+  "pages": [
+    "http://127.0.0.1:3000/techbookstore-shop.html"
+  ],
+  "durationMs": 40418,
+  "observations": 122,
+  "uniqueDestinations": 40,
+  "pageResults": [
+    {
+      "url": "http://127.0.0.1:3000/techbookstore-shop.html",
+      "viewport": "Desktop",
+      "status": "checked",
+      "links": 61,
+      "states": 2,
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:3000/techbookstore-shop.html",
+      "viewport": "Mobile",
+      "status": "checked",
+      "links": 61,
+      "states": 2,
+      "httpStatus": 200
+    }
+  ],
+  "coverageNotes": [
+    {
+      "key": "https://collector.github.com/github/collect|Blocked action request|POST",
+      "page": "https://collector.github.com/github/collect",
+      "reason": "Blocked action request",
+      "detail": "POST"
+    },
+    {
+      "key": "https://api.github.com/_private/browser/stats|Blocked action request|POST",
+      "page": "https://api.github.com/_private/browser/stats",
+      "reason": "Blocked action request",
+      "detail": "POST"
+    },
+    {
+      "key": "https://www.linkedin.com/directory/api/ingraphs/gauge|Blocked action request|POST",
+      "page": "https://www.linkedin.com/directory/api/ingraphs/gauge",
+      "reason": "Blocked action request",
+      "detail": "POST"
+    },
+    {
+      "key": "https://www.linkedin.com/directory/api/ingraphs/counter|Blocked action request|POST",
+      "page": "https://www.linkedin.com/directory/api/ingraphs/counter",
+      "reason": "Blocked action request",
+      "detail": "POST"
+    },
+    {
+      "key": "https://www.linkedin.com/li/track|Blocked action request|POST",
+      "page": "https://www.linkedin.com/li/track",
+      "reason": "Blocked action request",
+      "detail": "POST"
+    },
+    {
+      "key": "http://127.0.0.1:3000/techbookstore-shop.html|Navigation control could not be explored|Open bookstore assistant",
+      "page": "http://127.0.0.1:3000/techbookstore-shop.html",
+      "reason": "Navigation control could not be explored",
+      "detail": "Open bookstore assistant"
+    },
+    {
+      "key": "http://127.0.0.1:3000/techbookstore-shop.html|Additional interaction or embedded content may exist|Forms, unrecognized controls, closed shadow roots, canvas semantics, and exhaustive navigation journeys require manual review.",
+      "page": "http://127.0.0.1:3000/techbookstore-shop.html",
+      "reason": "Additional interaction or embedded content may exist",
+      "detail": "Forms, unrecognized controls, closed shadow roots, canvas semantics, and exhaustive navigation journeys require manual review."
+    },
+    {
+      "key": "https://collector-pxdojv695v.protechts.net/api/v2/msft|Blocked action request|POST",
+      "page": "https://collector-pxdojv695v.protechts.net/api/v2/msft",
+      "reason": "Blocked action request",
+      "detail": "POST"
+    }
+  ],
+  "verificationSummary": {
+    "working": 110,
+    "broken": 0,
+    "incomplete": 12,
+    "manual": 0,
+    "checked": 110,
+    "unverified": 12,
+    "rate": 100
+  },
+  "resultReasons": {
+    "Verified working": 110,
+    "Sign-in required": 12
+  },
+  "sourceIntegrity": "capture-result.json is the unchanged LinkLens scan object read from browser storage after completion."
+}

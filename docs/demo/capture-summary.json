@@ -1,0 +1,24 @@
+{
+  "capturedAt": "2026-09-22T03:18:45.391Z",
+  "sourceURL": "http://127.0.0.1:3000/techbookstore-shop.html",
+  "scope": "Current page",
+  "viewports": [
+    "Desktop",
+    "Mobile"
+  ],
+  "observations": 122,
+  "uniqueDestinations": 40,
+  "verificationSummary": {
+    "working": 110,
+    "broken": 0,
+    "incomplete": 12,
+    "manual": 0,
+    "checked": 110,
+    "unverified": 12,
+    "rate": 100
+  },
+  "reasons": {
+    "Verified working": 110,
+    "Sign-in required": 12
+  }
+}

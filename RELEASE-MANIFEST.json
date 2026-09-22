@@ -1,0 +1,22 @@
+{
+  "version": "1.3.1",
+  "buildId": "cf9d646c1c50",
+  "packagedAt": "2026-09-16T13:11:31.504350+00:00",
+  "validation": "Thirteen headless regression suites passed; final wording and per-URL summary checked with scoring, design, result separation and export cases",
+  "fullRegressionBuild": "b099d3c8a73d",
+  "finalDesignValidationBuild": "cf9d646c1c50",
+  "runtime": {
+    "server.js": "ed0a2fb8d5f97ee6dbb330102c6665f404dbf6b7f7fefff57fd6ee87609eb24a",
+    "src/scanner.js": "59c40c176c8b6b9513754de69b33fffc93fa8ac938659adab49b3ae4cf3cdf07",
+    "src/authentication.js": "107f96bb31ca366da7d214a07ecf349b88fecd09ab481a61a51f9e9a4e26997d",
+    "app.js": "02b67ca9a724ce3c363104992167ba700497e779f9fc689aeb848a57791f1906",
+    "index.html": "69a6dd4cc6722c69114bc0ba86c637451c9ae7b0a473fea181cbdf8bda82fa45",
+    "styles.css": "5edfab69d23ce87bd135d6e54495c9bf181a77d55ee1fe4eee3d6a986a1238ed",
+    "theme.js": "63740d8c5c233b528c2746032347772c683ea6ab42ed6684d32b6195ae558486",
+    "lens-tokens.css": "cdca834fc7752c983524700d73e0d0d01f651b517f71dbad3c6ac03f4e988f8f",
+    "brand/linklens-logo-v2.png": "57c01a133a450859e55ac1b6945c241c3c6e5c89ae4dcbb3e9c42cb036fd0260",
+    "assets/fonts/geist-latin.woff2": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1",
+    "package.json": "6347609562c5c7e855f319d4dcd9c2561cded6a23a3258f6b7fe1acda67e8cf5"
+  },
+  "scope": "Complete LinkLens 1.3.1 application, automated validation, Tech Book Store evidence, standalone product demo and report exports"
+}

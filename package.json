@@ -1,0 +1,29 @@
+{
+  "name": "linklense",
+  "version": "1.3.1",
+  "private": true,
+  "type": "module",
+  "description": "Local link integrity and accessibility audit workspace",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/integration.mjs",
+    "test:authentication": "node tests/authentication.mjs",
+    "test:viewports": "node tests/viewports.mjs",
+    "test:rendered-error": "node tests/rendered-error.mjs",
+    "test:all": "node tests/run-all.mjs",
+    "test:history": "node tests/history.mjs",
+    "test:authenticated-destinations": "node tests/authenticated-destinations.mjs",
+    "test:saucedemo": "node tests/saucedemo-e2e.mjs",
+    "test:runtime": "node tests/runtime-version.mjs",
+    "test:design": "node tests/design-system.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.63.0"
+  },
+  "devDependencies": {
+    "axe-core": "^4.13.0"
+  }
+}
